@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://dozer.sourceforge.net"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <mapping map-id="MovieEntity_Movie">
+        <class-a>com.project.movie.entity.MovieEntity</class-a>
+        <class-b>com.project.movie.base.dto.Movie</class-b>
+    </mapping>
+</mappings>
