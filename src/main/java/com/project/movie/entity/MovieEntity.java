@@ -3,6 +3,8 @@ package com.project.movie.entity;
 import com.project.movie.base.type.AbstractEditableEntity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "movie")
@@ -24,6 +26,9 @@ public class MovieEntity extends AbstractEditableEntity {
     @Basic
     @Column(name = "cover")
     private String cover;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "movieEntity")
+    private Set<ActorEntity> actorEntity = new HashSet<>();
 
     public Long getMovieId() {
         return movieId;
@@ -55,5 +60,13 @@ public class MovieEntity extends AbstractEditableEntity {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public Set<ActorEntity> getActorEntity() {
+        return actorEntity;
+    }
+
+    public void setActorEntity(Set<ActorEntity> actorEntity) {
+        this.actorEntity = actorEntity;
     }
 }

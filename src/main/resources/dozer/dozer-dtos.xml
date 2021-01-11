@@ -7,4 +7,14 @@
         <class-a>com.project.movie.entity.MovieEntity</class-a>
         <class-b>com.project.movie.base.dto.Movie</class-b>
     </mapping>
+
+    <mapping map-id="ActorEntity_Actor">
+        <class-a>com.project.movie.entity.ActorEntity</class-a>
+        <class-b>com.project.movie.base.dto.Actor</class-b>
+    </mapping>
+
+    <mapping map-id="ActressEntity_Actress">
+        <class-a>com.project.movie.entity.ActressEntity</class-a>
+        <class-b>com.project.movie.base.dto.Actress</class-b>
+    </mapping>
 </mappings>

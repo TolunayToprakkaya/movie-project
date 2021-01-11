@@ -1,11 +1,16 @@
 package com.project.movie.base.dto;
 
+import com.project.movie.entity.ActorEntity;
+
+import java.util.Set;
+
 public class Movie {
 
     private Long movieId;
     private String name;
     private String title;
     private String cover;
+    private Set<ActorEntity> actorEntity;
 
     public Long getMovieId() {
         return movieId;
@@ -37,5 +42,13 @@ public class Movie {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public Set<ActorEntity> getActorEntity() {
+        return actorEntity;
+    }
+
+    public void setActorEntity(Set<ActorEntity> actorEntity) {
+        this.actorEntity = actorEntity;
     }
 }
