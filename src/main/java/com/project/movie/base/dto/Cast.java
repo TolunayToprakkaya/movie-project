@@ -1,24 +1,25 @@
 package com.project.movie.base.dto;
 
-import com.project.movie.entity.MovieEntity;
+import com.project.movie.entity.CastFeatureEntity;
 
 import java.util.Date;
 
-public class Actress {
+public class Cast {
 
-    private Long actressId;
+    private Long castId;
     private String name;
     private String lastname;
     private Date birthday;
     private String birthplace;
-    private MovieEntity movieEntity;
+    private String biography;
+    private CastFeature castFeature;
 
-    public Long getActressId() {
-        return actressId;
+    public Long getCastId() {
+        return castId;
     }
 
-    public void setActressId(Long actressId) {
-        this.actressId = actressId;
+    public void setCastId(Long castId) {
+        this.castId = castId;
     }
 
     public String getName() {
@@ -53,11 +54,19 @@ public class Actress {
         this.birthplace = birthplace;
     }
 
-    public MovieEntity getMovieEntity() {
-        return movieEntity;
+    public String getBiography() {
+        return biography;
     }
 
-    public void setMovieEntity(MovieEntity movieEntity) {
-        this.movieEntity = movieEntity;
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
+
+    public CastFeature getCastFeature() {
+        return castFeature;
+    }
+
+    public void setCastFeature(CastFeature castFeature) {
+        this.castFeature = castFeature;
     }
 }

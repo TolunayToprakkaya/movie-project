@@ -8,13 +8,29 @@
         <class-b>com.project.movie.base.dto.Movie</class-b>
     </mapping>
 
-    <mapping map-id="ActorEntity_Actor">
-        <class-a>com.project.movie.entity.ActorEntity</class-a>
-        <class-b>com.project.movie.base.dto.Actor</class-b>
+    <mapping map-id="CastEntity_Cast">
+        <class-a>com.project.movie.entity.CastEntity</class-a>
+        <class-b>com.project.movie.base.dto.Cast</class-b>
+        <field>
+            <a>castFeatureEntity.castFeatureId</a>
+            <b>castFeature.castFeatureId</b>
+        </field>
+        <field>
+            <a>castFeatureEntity.castId</a>
+            <b>castFeature.castId</b>
+        </field>
+        <field>
+            <a>castFeatureEntity.isActor</a>
+            <b>castFeature.isActor</b>
+        </field>
+        <field>
+            <a>castFeatureEntity.isActress</a>
+            <b>castFeature.isActress</b>
+        </field>
     </mapping>
 
-    <mapping map-id="ActressEntity_Actress">
-        <class-a>com.project.movie.entity.ActressEntity</class-a>
-        <class-b>com.project.movie.base.dto.Actress</class-b>
+    <mapping map-id="CastFeatureEntity_CastFeature">
+        <class-a>com.project.movie.entity.CastFeatureEntity</class-a>
+        <class-b>com.project.movie.base.dto.CastFeature</class-b>
     </mapping>
 </mappings>

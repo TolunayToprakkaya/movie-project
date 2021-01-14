@@ -1,5 +1,6 @@
 package com.project.movie.controller;
 
+import com.project.movie.base.dto.CreateNewMovieRequest;
 import com.project.movie.base.dto.Movie;
 import com.project.movie.service.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class MovieController {
     }
 
     @PostMapping(value = "/createNewMovie", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Movie> createNewMovie(@RequestBody Movie movie) {
-        return new ResponseEntity<>(movieService.createNewMovie(movie), HttpStatus.OK);
+    public ResponseEntity<Movie> createNewMovie(@RequestBody CreateNewMovieRequest request) {
+        return new ResponseEntity<>(movieService.createNewMovie(request), HttpStatus.OK);
     }
 
     @PutMapping(value = "/updateMovie/{movieId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

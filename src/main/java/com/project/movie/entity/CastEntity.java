@@ -4,15 +4,17 @@ import com.project.movie.base.type.AbstractEditableEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "actress")
-public class ActressEntity extends AbstractEditableEntity {
+@Table(name = "[cast]")
+public class CastEntity extends AbstractEditableEntity {
 
     @Id
-    @Column(name = "actress_id")
+    @Column(name = "cast_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long actressId;
+    private Long castId;
 
     @Basic
     @Column(name = "name")
@@ -30,16 +32,20 @@ public class ActressEntity extends AbstractEditableEntity {
     @Column(name = "birthplace")
     private String birthplace;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id", nullable = false)
-    private MovieEntity movieEntity;
+    @Basic
+    @Column(name = "biography", length=512)
+    private String biography;
 
-    public Long getActressId() {
-        return actressId;
+    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade=CascadeType.ALL)
+    @JoinColumn(name = "cast_feature_id", nullable = false)
+    private CastFeatureEntity castFeatureEntity;
+
+    public Long getCastId() {
+        return castId;
     }
 
-    public void setActressId(Long actressId) {
-        this.actressId = actressId;
+    public void setCastId(Long castId) {
+        this.castId = castId;
     }
 
     public String getName() {
@@ -74,11 +80,19 @@ public class ActressEntity extends AbstractEditableEntity {
         this.birthplace = birthplace;
     }
 
-    public MovieEntity getMovieEntity() {
-        return movieEntity;
+    public String getBiography() {
+        return biography;
     }
 
-    public void setMovieEntity(MovieEntity movieEntity) {
-        this.movieEntity = movieEntity;
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
+
+    public CastFeatureEntity getCastFeatureEntity() {
+        return castFeatureEntity;
+    }
+
+    public void setCastFeatureEntity(CastFeatureEntity castFeatureEntity) {
+        this.castFeatureEntity = castFeatureEntity;
     }
 }

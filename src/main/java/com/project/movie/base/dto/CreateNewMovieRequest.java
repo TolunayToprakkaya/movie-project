@@ -2,21 +2,12 @@ package com.project.movie.base.dto;
 
 import java.util.List;
 
-public class Movie {
+public class CreateNewMovieRequest {
 
-    private Long movieId;
     private String name;
     private String title;
     private String cover;
-    private List<Cast> castList;
-
-    public Long getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(Long movieId) {
-        this.movieId = movieId;
-    }
+    private List<Long> castIdList;
 
     public String getName() {
         return name;
@@ -42,11 +33,11 @@ public class Movie {
         this.cover = cover;
     }
 
-    public List<Cast> getCastList() {
-        return castList;
+    public List<Long> getCastIdList() {
+        return castIdList;
     }
 
-    public void setCastList(List<Cast> castList) {
-        this.castList = castList;
+    public void setCastIdList(List<Long> castIdList) {
+        this.castIdList = castIdList;
     }
 }
