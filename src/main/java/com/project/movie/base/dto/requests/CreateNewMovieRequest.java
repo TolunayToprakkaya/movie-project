@@ -1,4 +1,4 @@
-package com.project.movie.base.dto;
+package com.project.movie.base.dto.requests;
 
 import java.util.List;
 

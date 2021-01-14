@@ -1,10 +1,9 @@
 package com.project.movie.service.impl;
 
 import com.project.movie.base.dto.Cast;
-import com.project.movie.base.dto.CreateNewMovieRequest;
+import com.project.movie.base.dto.requests.CreateNewMovieRequest;
 import com.project.movie.base.dto.Movie;
 import com.project.movie.base.mapper.DozerMapperUtility;
-import com.project.movie.entity.CastEntity;
 import com.project.movie.entity.MovieCastsEntity;
 import com.project.movie.entity.MovieEntity;
 import com.project.movie.repository.MovieCastsRepository;

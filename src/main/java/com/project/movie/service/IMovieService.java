@@ -1,6 +1,6 @@
 package com.project.movie.service;
 
-import com.project.movie.base.dto.CreateNewMovieRequest;
+import com.project.movie.base.dto.requests.CreateNewMovieRequest;
 import com.project.movie.base.dto.Movie;
 
 import java.util.List;

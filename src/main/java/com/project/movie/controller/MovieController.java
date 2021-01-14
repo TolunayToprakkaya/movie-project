@@ -1,6 +1,6 @@
 package com.project.movie.controller;
 
-import com.project.movie.base.dto.CreateNewMovieRequest;
+import com.project.movie.base.dto.requests.CreateNewMovieRequest;
 import com.project.movie.base.dto.Movie;
 import com.project.movie.service.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
