@@ -11,6 +11,8 @@ import com.project.movie.service.ICastFeatureService;
 import com.project.movie.service.ICastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +39,13 @@ public class CastServiceImpl implements ICastService {
         List<CastEntity> castEntityList = castRepository.findAll();
 
         return dozerMapperUtility.map(castEntityList, Cast.class, mapId);
+    }
+
+    @Override
+    public Page<Cast> castListPageable(Pageable pageable) {
+        Page<CastEntity> castEntityPage = castRepository.findAll(pageable);
+
+        return (Page<Cast>) dozerMapperUtility.map(castEntityPage, Cast.class, mapId);
     }
 
     @Override

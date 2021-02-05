@@ -1,7 +1,5 @@
 package com.project.movie.base.dto;
 
-import com.project.movie.entity.CastFeatureEntity;
-
 import java.util.Date;
 
 public class Cast {
@@ -9,6 +7,7 @@ public class Cast {
     private Long castId;
     private String name;
     private String lastname;
+    private String photo;
     private Date birthday;
     private String birthplace;
     private String biography;
@@ -36,6 +35,14 @@ public class Cast {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public Date getBirthday() {

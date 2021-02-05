@@ -3,6 +3,9 @@ package com.project.movie.controller;
 import com.project.movie.base.dto.Cast;
 import com.project.movie.service.ICastService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,12 @@ public class CastController {
     @GetMapping(value = "/fetchAllCastList", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Cast>> fetchAllCastList() {
         return new ResponseEntity<>(castService.fetchAllCastList(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/castPageable", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Page<Cast> castListPageable(@RequestParam Integer page, @RequestParam Integer pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        return castService.castListPageable(pageable);
     }
 
     @GetMapping(value = "/inquireCastById/{castId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

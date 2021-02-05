@@ -33,4 +33,9 @@
         <class-a>com.project.movie.entity.CastFeatureEntity</class-a>
         <class-b>com.project.movie.base.dto.CastFeature</class-b>
     </mapping>
+
+    <mapping map-id="MovieCastsEntity_MovieCasts">
+        <class-a>com.project.movie.entity.MovieCastsEntity</class-a>
+        <class-b>com.project.movie.base.dto.MovieCasts</class-b>
+    </mapping>
 </mappings>

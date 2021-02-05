@@ -1,6 +1,7 @@
 package com.project.movie.service.impl;
 
 import com.project.movie.base.dto.Cast;
+import com.project.movie.base.dto.MovieCasts;
 import com.project.movie.base.dto.requests.CreateNewMovieRequest;
 import com.project.movie.base.dto.Movie;
 import com.project.movie.base.mapper.DozerMapperUtility;
@@ -37,15 +38,33 @@ public class MovieServiceImpl implements IMovieService {
     @Override
     public List<Movie> fetchAllMovieList() {
         List<MovieEntity> movieEntityList = movieRepository.findAll();
+        List<Movie> movieList = dozerMapperUtility.map(movieEntityList, Movie.class, mapId);
 
-        return dozerMapperUtility.map(movieEntityList, Movie.class, mapId);
+        for (Movie movie : movieList) {
+            List<MovieCastsEntity> movieCastsEntityList = movieCastsRepository.findByMovieId(movie.getMovieId());
+            List<Long> castIdList = movieCastsEntityList.stream()
+                    .map(MovieCastsEntity::getCastId)
+                    .collect(Collectors.toList());
+            List<Cast> castList = castService.fetchAllCastList(castIdList);
+            movie.setCastList(castList);
+        }
+
+        return movieList;
     }
 
     @Override
     public Movie inquireMovieById(Long movieId) {
         MovieEntity movieEntity = movieRepository.findByMovieId(movieId);
 
-        return dozerMapperUtility.map(movieEntity, Movie.class, mapId);
+        Movie movie = dozerMapperUtility.map(movieEntity, Movie.class, mapId);
+        List<MovieCastsEntity> movieCastsEntityList = movieCastsRepository.findByMovieId(movie.getMovieId());
+        List<Long> castIdList = movieCastsEntityList.stream()
+                .map(MovieCastsEntity::getCastId)
+                .collect(Collectors.toList());
+        List<Cast> castList = castService.fetchAllCastList(castIdList);
+        movie.setCastList(castList);
+
+        return movie;
     }
 
     @Override
@@ -61,6 +80,8 @@ public class MovieServiceImpl implements IMovieService {
         MovieEntity movieEntity = dozerMapperUtility.map(movie, MovieEntity.class, mapId);
         movieRepository.save(movieEntity);
 
+        movie.setMovieId(movieEntity.getMovieId());
+
         List<Long> castIdList = castList.stream().map(Cast::getCastId).collect(Collectors.toList());
         for (Long castId : castIdList) {
             MovieCastsEntity movieCastsEntity = new MovieCastsEntity();
@@ -73,14 +94,22 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     @Override
-    public Movie updateMovie(Movie movie, Long movieId) {
+    public Movie updateMovie(Movie request, Long movieId) {
         MovieEntity movieEntity = movieRepository.findByMovieId(movieId);
-        movieEntity.setName(movie.getName());
-        movieEntity.setTitle(movie.getTitle());
-        movieEntity.setCover(movie.getCover());
+        movieEntity.setName(request.getName());
+        movieEntity.setTitle(request.getTitle());
+        movieEntity.setCover(request.getCover());
         movieRepository.save(movieEntity);
 
-        return dozerMapperUtility.map(movieEntity, Movie.class, mapId);
+        Movie movie = dozerMapperUtility.map(movieEntity, Movie.class, mapId);
+        List<MovieCastsEntity> movieCastsEntityList = movieCastsRepository.findByMovieId(movie.getMovieId());
+        List<Long> castIdList = movieCastsEntityList.stream()
+                .map(MovieCastsEntity::getCastId)
+                .collect(Collectors.toList());
+        List<Cast> castList = castService.fetchAllCastList(castIdList);
+        movie.setCastList(castList);
+
+        return movie;
     }
 
     @Override
@@ -88,6 +117,14 @@ public class MovieServiceImpl implements IMovieService {
         MovieEntity movieEntity = movieRepository.findByMovieId(movieId);
         movieRepository.deleteById(movieId);
 
-        return dozerMapperUtility.map(movieEntity, Movie.class, mapId);
+        Movie movie = dozerMapperUtility.map(movieEntity, Movie.class, mapId);
+        List<MovieCastsEntity> movieCastsEntityList = movieCastsRepository.findByMovieId(movie.getMovieId());
+        List<Long> castIdList = movieCastsEntityList.stream()
+                .map(MovieCastsEntity::getCastId)
+                .collect(Collectors.toList());
+        List<Cast> castList = castService.fetchAllCastList(castIdList);
+        movie.setCastList(castList);
+
+        return movie;
     }
 }

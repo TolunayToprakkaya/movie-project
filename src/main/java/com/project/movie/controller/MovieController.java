@@ -34,8 +34,8 @@ public class MovieController {
     }
 
     @PutMapping(value = "/updateMovie/{movieId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie, @PathVariable("movieId") Long movieId) {
-        return new ResponseEntity<>(movieService.updateMovie(movie, movieId), HttpStatus.OK);
+    public ResponseEntity<Movie> updateMovie(@RequestBody Movie request, @PathVariable("movieId") Long movieId) {
+        return new ResponseEntity<>(movieService.updateMovie(request, movieId), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/deleteMovieById/{movieId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

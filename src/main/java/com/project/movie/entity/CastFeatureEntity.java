@@ -1,5 +1,6 @@
 package com.project.movie.entity;
 
+import com.project.movie.base.builder.castFeature.CastFeatureBuilder;
 import com.project.movie.base.type.AbstractEditableEntity;
 
 import javax.persistence.*;
@@ -7,6 +8,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "cast_feature")
 public class CastFeatureEntity extends AbstractEditableEntity {
+
+    public CastFeatureEntity() {}
+
+    public CastFeatureEntity(Long castId, Long isActor, Long isActress) {
+        this.castId = castId;
+        this.isActor = isActor;
+        this.isActress = isActress;
+    }
 
     @Id
     @Column(name = "cast_feature_id")
@@ -27,6 +36,10 @@ public class CastFeatureEntity extends AbstractEditableEntity {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "castFeatureEntity")
     private CastEntity castEntity;
+
+    public static CastFeatureBuilder builder() {
+        return new CastFeatureBuilder();
+    }
 
     public Long getCastFeatureId() {
         return castFeatureId;

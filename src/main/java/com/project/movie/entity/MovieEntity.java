@@ -1,15 +1,21 @@
 package com.project.movie.entity;
 
+import com.project.movie.base.builder.movie.MovieBuilder;
 import com.project.movie.base.type.AbstractEditableEntity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "movie")
 public class MovieEntity extends AbstractEditableEntity {
+
+    protected MovieEntity(){}
+
+    public MovieEntity(String name, String title, String cover) {
+        this.name = name;
+        this.title = title;
+        this.cover = cover;
+    }
 
     @Id
     @Column(name = "movie_id")
@@ -27,6 +33,10 @@ public class MovieEntity extends AbstractEditableEntity {
     @Basic
     @Column(name = "cover")
     private String cover;
+
+    public static MovieBuilder builder() {
+        return new MovieBuilder();
+    }
 
     public Long getMovieId() {
         return movieId;

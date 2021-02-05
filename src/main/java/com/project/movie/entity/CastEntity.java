@@ -1,15 +1,26 @@
 package com.project.movie.entity;
 
+import com.project.movie.base.builder.cast.CastBuilder;
 import com.project.movie.base.type.AbstractEditableEntity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "[cast]")
 public class CastEntity extends AbstractEditableEntity {
+
+    public CastEntity() {}
+
+    public CastEntity(String name, String lastname, String photo, Date birthday, String birthplace, String biography, CastFeatureEntity castFeatureEntity) {
+        this.name = name;
+        this.lastname = lastname;
+        this.photo = photo;
+        this.birthday = birthday;
+        this.birthplace = birthplace;
+        this.biography = biography;
+        this.castFeatureEntity = castFeatureEntity;
+    }
 
     @Id
     @Column(name = "cast_id")
@@ -25,6 +36,10 @@ public class CastEntity extends AbstractEditableEntity {
     private String lastname;
 
     @Basic
+    @Column(name = "photo")
+    private String photo;
+
+    @Basic
     @Column(name = "birthday")
     private Date birthday;
 
@@ -33,12 +48,16 @@ public class CastEntity extends AbstractEditableEntity {
     private String birthplace;
 
     @Basic
-    @Column(name = "biography", length=512)
+    @Column(name = "biography", length=2048)
     private String biography;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false, cascade=CascadeType.ALL)
     @JoinColumn(name = "cast_feature_id", nullable = false)
     private CastFeatureEntity castFeatureEntity;
+
+    public static CastBuilder builder() {
+        return new CastBuilder();
+    }
 
     public Long getCastId() {
         return castId;
@@ -62,6 +81,14 @@ public class CastEntity extends AbstractEditableEntity {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public Date getBirthday() {
